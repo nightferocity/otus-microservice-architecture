@@ -1,0 +1,8 @@
+spring:
+  application:
+    name: hw02
+
+server:
+  port: 80
+
+
