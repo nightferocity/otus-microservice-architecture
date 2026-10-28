@@ -1,0 +1,63 @@
+{
+  "info": {
+    "name": "HW02 Health API",
+    "description": "Проверяем работу health по дз №3",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "http://arch.homework"
+    }
+  ],
+  "item": [
+    {
+      "name": "GET /health",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": "{{baseUrl}}/health"
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('returns HTTP 200', function () {",
+              "    pm.response.to.have.status(200);",
+              "});",
+              "pm.test('returns status OK', function () {",
+              "    pm.expect(pm.response.json()).to.deep.equal({ status: 'OK' });",
+              "});"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "GET /otusapp/nightferocity/health (rewrite)",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": "{{baseUrl}}/otusapp/nightferocity/health"
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('returns HTTP 200', function () {",
+              "    pm.response.to.have.status(200);",
+              "});",
+              "pm.test('returns status OK', function () {",
+              "    pm.expect(pm.response.json()).to.deep.equal({ status: 'OK' });",
+              "});"
+            ]
+          }
+        }
+      ]
+    }
+  ]
+}

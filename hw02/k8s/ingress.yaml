@@ -1,0 +1,17 @@
+﻿apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: hw02-health
+spec:
+  ingressClassName: nginx
+  rules:
+    - host: arch.homework
+      http:
+        paths:
+          - path: /health/?
+            pathType: ImplementationSpecific
+            backend:
+              service:
+                name: hw02-health
+                port:
+                  number: 8000

@@ -1,0 +1,12 @@
+﻿apiVersion: v1
+kind: Service
+metadata:
+  name: hw02-health
+spec:
+  selector:
+    app: hw02-health
+  ports:
+    - name: http
+      port: 8000
+      targetPort: http
+  type: ClusterIP
