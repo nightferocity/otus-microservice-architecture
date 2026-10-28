@@ -1,0 +1,42 @@
+﻿apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: hw02-health
+  labels:
+    app: hw02-health
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: hw02-health
+  template:
+    metadata:
+      labels:
+        app: hw02-health
+    spec:
+      containers:
+        - name: hw02-health
+          image: nightferocity/hw02:latest
+          imagePullPolicy: Always
+          ports:
+            - name: http
+              containerPort: 8000
+          livenessProbe:
+            httpGet:
+              path: /actuator/health/liveness
+              port: http
+            initialDelaySeconds: 20
+            periodSeconds: 10
+          readinessProbe:
+            httpGet:
+              path: /actuator/health/readiness
+              port: http
+            initialDelaySeconds: 10
+            periodSeconds: 5
+          resources:
+            requests:
+              cpu: 100m
+              memory: 256Mi
+            limits:
+              cpu: 500m
+              memory: 512Mi
